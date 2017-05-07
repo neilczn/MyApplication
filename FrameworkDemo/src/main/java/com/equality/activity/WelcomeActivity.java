@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -38,6 +39,10 @@ public class WelcomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+        ActionBar actionBar=getSupportActionBar();
+        if (null!=actionBar){
+            actionBar.setTitle("AppDemo");
+        }
 
         rl_welcome_root=(RelativeLayout)findViewById(R.id.rl_welcome_root);
         image_logo=(ImageView)findViewById(R.id.image_logo);

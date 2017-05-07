@@ -2,6 +2,7 @@ package com.equality.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -9,8 +10,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.equality.comm.MyApplication;
-import com.equality.tools.model.OnlineUserInfo;
-import com.equality.tools.util.IdentityHelper;
+import com.equality.frameworklibrary.tools.model.OnlineUserInfo;
+import com.equality.frameworklibrary.tools.util.IdentityHelper;
+
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -25,6 +27,10 @@ public class LoginActivity extends AppCompatActivity {
         txtUserName=(EditText)findViewById(R.id.txtUserName);
         txtPassword=(EditText)findViewById(R.id.txtPassword);
         btnLogin=(Button)findViewById(R.id.btnLogin);
+        ActionBar actionBar=getSupportActionBar();
+        if (null!=actionBar){
+            actionBar.setTitle("AppDemo");
+        }
     }
 
     public void Login(View e)

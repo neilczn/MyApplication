@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">FrameworkDemo</string>
+    <string name="toolbar">主界面</string>
 </resources>

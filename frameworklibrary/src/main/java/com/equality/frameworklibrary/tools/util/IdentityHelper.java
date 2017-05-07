@@ -1,9 +1,9 @@
-package com.equality.tools.util;
+package com.equality.frameworklibrary.tools.util;
 
-import com.equality.tools.model.OnlineUserInfo;
+import com.equality.frameworklibrary.tools.model.OnlineUserInfo;
 
 /**
- * Created by neil on 2017/5/1.
+ * Created by neil on 2017/5/7.
  */
 
 public class IdentityHelper {
@@ -22,5 +22,4 @@ public class IdentityHelper {
     {
         return user;
     }
-
 }

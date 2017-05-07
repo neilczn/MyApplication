@@ -1,7 +1,7 @@
-package com.equality.tools.model;
+package com.equality.frameworklibrary.tools.model;
 
 /**
- * Created by neil on 2017/5/1.
+ * Created by neil on 2017/5/7.
  */
 
 public class OnlineUserInfo {
