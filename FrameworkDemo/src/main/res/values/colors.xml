@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>-->
+
+    <color name="colorPrimary">#04be02</color>
+    <color name="colorPrimaryDark">#04be02</color>
+    <color name="colorAccent">#04be02</color>
+    <color name="defaultTextColor">#8a000000</color>
+
+    <!--activbity背景颜色-->
+    <color name="colorBackground">#00ff00</color>
+
+    <color name="green1">#1da02b</color>
+    <color name="green2">#04be02</color>
+    <color name="green3">#90ee90</color>
+</resources>
