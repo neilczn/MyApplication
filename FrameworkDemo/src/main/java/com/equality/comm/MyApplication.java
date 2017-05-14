@@ -5,6 +5,7 @@ import android.content.Context;
 
 /**
  * Created by neil on 2017/5/1.
+ * 公共的context
  */
 
 public class MyApplication extends Application {
