@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private DrawerLayout drawer_layout;
+    private SwipeRefreshLayout swipeRefresh;
 
     private Module[] modules={new Module("模块1",R.drawable.apple),
             new Module("模块2",R.drawable.banana),
@@ -92,11 +94,20 @@ public class MainActivity extends AppCompatActivity {
         initModules();
 
         RecyclerView recyclerView=(RecyclerView)findViewById(R.id.recycler_view);
-        //GridLayoutManager gridLayoutManager=new GridLayoutManager(this,1);//设置显示的列数
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
+        //GridLayoutManager layoutManager=new GridLayoutManager(this,2);//设置显示的列数
+        LinearLayoutManager layoutManager=new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
         moduleAdapter=new ModuleAdapter(moduleList);
         recyclerView.setAdapter(moduleAdapter);
+
+        swipeRefresh=(SwipeRefreshLayout)findViewById(R.id.swipe_refresh);
+        swipeRefresh.setColorSchemeResources(R.color.colorPrimary);
+        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshModules();
+            }
+        });
 
     }
 
@@ -105,12 +116,38 @@ public class MainActivity extends AppCompatActivity {
      */
     private void initModules(){
         moduleList.clear();
-        for (int i=0;i<20;i++){
+        for (int i=0;i<6;i++){
             Random random =new Random();
             int index=random.nextInt(modules.length);
             moduleList.add(modules[index]);
         }
     }
+
+    /**
+     * 刷新模块数据
+     */
+    private void refreshModules(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        initModules();
+                        moduleAdapter.notifyDataSetChanged();//适配器通知数据更新
+                        swipeRefresh.setRefreshing(false);//关闭下拉刷新显示
+                    }
+                });
+
+            }
+        }).start();//注意需要开启线程
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

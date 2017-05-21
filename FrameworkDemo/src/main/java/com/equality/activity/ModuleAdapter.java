@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.equality.comm.model.Module;
 
 import java.util.List;
@@ -53,7 +54,8 @@ public class ModuleAdapter extends RecyclerView.Adapter<ModuleAdapter.ViewHolder
     public void onBindViewHolder(ViewHolder holder, int position) {
         Module module=moduleList.get(position);
         holder.moduleName.setText(module.getName());
-        holder.moduleImage.setImageResource(module.getImageId());
+        //holder.moduleImage.setImageResource(module.getImageId());
+        Glide.with(mcontext).load(module.getImageId()).into(holder.moduleImage);//涉及图片压缩
     }
 
 

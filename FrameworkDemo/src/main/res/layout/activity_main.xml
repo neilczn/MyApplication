@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <!--AppBarLayout必须是CoordinatorLayout的子布局-->
             <!--AppBarLayout:垂直方向的LinerLayout-->
             <!--解决RecyclerView遮盖Toolbar-->
             <!--另1种解决方式：RecyclerView向下偏移1个Toolbar的高度-->
@@ -34,7 +35,14 @@
                 android:minHeight="?attr/actionBarSize"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:popupTheme="@style/Theme.AppCompat.Light"
-                />
+                app:layout_scrollFlags="scroll|enterAlways|snap"
+                >
+
+                <!--scroll:RecyclerView向上滚动时，Toolbar会一起向上滚动并隐藏-->
+                <!--enterAlways：RecyclerView向下滚动时，Toolbar会一起向下滚动并重新显示-->
+                <!--snap：表示当Toolbar还没有完全隐藏或显示时，会根据当前滚动的距离，自动选择隐藏还是显示-->
+
+            </android.support.v7.widget.Toolbar>
 
         </android.support.design.widget.AppBarLayout>
 
@@ -50,16 +58,29 @@
             app:elevation="8dp"/>
 
 
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view"
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <!--AppBarLayout包裹Toolbar后，反而会遮盖了CardView一部分内容，需要设定layout_behavior-->
+            <!--哪个控件想要实现下拉刷新的功能，就将控件放到SwipeRefreshLayout中-->
 
-        </android.support.v7.widget.RecyclerView>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <!--AppBarLayout包裹Toolbar后，反而会遮盖了CardView一部分内容，需要设定layout_behavior-->
+                <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
+                <!--由于RecyclerView外层套用了SwipeRefreshLayout，所以layout_behavior需要转移到外层控件中-->
+
+            </android.support.v7.widget.RecyclerView>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+
 
 
     </android.support.design.widget.CoordinatorLayout>
